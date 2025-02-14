@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+</head>
+<body>
+    <form action="/member/login" method="post" th:object="${loginRequestDTO}">
+        이메일: <input type="text" th:field="*{memberEmail}" placeholder="이메일 입력">
+        <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}" style="color: red;"></p><br/>
+
+        비밀번호: <input type="password" th:field="*{memberPassword}" placeholder="비밀번호 입력">
+        <p th:if="${#fields.hasErrors('memberPassword')}" th:errors="*{memberPassword}" style="color: red;"></p><br/>
+
+        <input type="submit" value="로그인">
+    </form>
+    <script>
+        var errorMessage = "[[${errorMessage}]]";
+        if (errorMessage && errorMessage !== "null" && errorMessage !== "") {
+            alert(errorMessage);
+        }
+    </script>
+</body>
+</html>
